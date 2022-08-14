@@ -1,0 +1,33 @@
+<template>
+    <div style="text-align: left">
+        <h3>Todos List (Done: {{getDoneListCount()}})</h3>
+        <ul>
+            <li v-for="todo in todosList" :key="todo.is">
+                {{todo.text}} - {{todo.done ? 'Done' :'Not Done'}}
+
+            </li>
+        </ul>
+    </div>
+</template>
+<script>
+
+
+export default {
+    name: "TodosList",
+    data() {
+        return {
+            
+        };
+    },
+    computed: {
+        todosList() {
+            return this.$store.state.todos;
+        }
+    },
+    methods: {
+        getDoneListCount() {
+return this.todosList.filter((todo) => todo.done).length;
+        }
+    }
+}
+</script>
